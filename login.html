@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <form>
+      <h2>Login</h2>
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="button" onclick="login()">Login</button>
+      <p id="error-message" style="color: red;"></p> <!-- Pesan kesalahan -->
+    </form>
+    <p>Belum punya akun? <a href="registration.html">Daftar disini</a></p> <!-- Link ke halaman registrasi -->
+  </div>
+
+  <script>
+    function login() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      // Cek input tidak boleh kosong
+      if (!username || !password) {
+        document.getElementById('error-message').innerText = "Username dan password harus diisi";
+        return;
+      }
+
+      // Lakukan validasi dengan data pengguna yang benar
+      var users = {
+        "admin": "admin",
+        "jetsun": "jetsun123",
+        "GraciaCalista14": "gracia123",
+        "Taoavatara24": "liliantao"
+        // Tambahkan username dan password di sini
+      };
+
+      var userFound = false;
+      for (var user in users) {
+        if (user === username && users[user] === password) {
+          userFound = true;
+          window.location.href = "index.html"; // Redirect ke halaman home.html setelah login berhasil
+          break;
+        }
+      }
+
+      // Tampilkan pesan kesalahan jika username/password tidak cocok
+      if (!userFound) {
+        document.getElementById('error-message').innerText = "Username atau password salah";
+      }
+    }
+  </script>
+</body>
+</html>
